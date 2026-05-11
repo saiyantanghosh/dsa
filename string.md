@@ -3,6 +3,29 @@
 * input string seperated by spaces
 
 ## Approach1 - extra space using Stack
+```java
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+    String input = "my name is saiyantan";  
+    String[] words = input.trim().split("\\s++");
+    Deque<String> stack = new ArrayDeque<>(); 
+    reverseWords(words,stack);
+    StringBuilder reversedWord = new StringBuilder();
+    while(!stack.isEmpty()){
+        reversedWord.append(stack.pop());
+        reversedWord.append(" ");
+    }
+    System.out.print(reversedWord.toString());
+    }
+    private static void reverseWords(String[] words,Deque<String> stack){
+        for(String word: words){
+            stack.push(word);
+        }
+    }
+ 
+}
+```
 ## Approach2 - No extra space same input string
 * reverse String
 * Reverse each words till string 
