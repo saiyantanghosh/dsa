@@ -30,6 +30,13 @@ return graph;
   - S.C. each V has E entries O(V+E)
 # BFS
 * Use Queue to hold all neighbours
+* Good for shortest/minimum related problems on unweighted graph or same weighted graph.
+* If diff weighted then choose dijkstra or Bellman Ford
+* Use cases 
+  - Shorted path on unweighted graph
+     * ss
+  - Nearest path 
+  - Minimum Steps
 # DFS Recursive
 
 # DFS Iterative
