@@ -31,12 +31,106 @@ return graph;
 # BFS
 * Use Queue to hold all neighbours
 * Good for shortest/minimum related problems on unweighted graph or same weighted graph.
-* If diff weighted then choose dijkstra or Bellman Ford
+* If diff weighted then choose dijkstra(+ve weight) or Bellman Ford(-ve weight)
 * Use cases 
   - Shorted path on unweighted graph
-     * ss
   - Nearest path 
   - Minimum Steps
-# DFS Recursive
+```java
 
+public void performBfs(List<List<Integer>> adjList,int V){
+  boolean isVisited[] = new boolean[V+1];
+  Queue<Integer> queue = new ArrayDeque<>();
+  for(int i=1;i<=V;i++){
+   if(!isVisited[i]){
+    queue.offer(i);
+    isVisited[i] = true;
+   }
+   while(!queue.isEmpty()){
+     Integer current = queue.poll();
+     for(Integer neightbour:adjList.get(current)){
+      if(!isVisited[neightbour]){
+        isVisited[neightbour] = true;
+        queue.offer(neightbour);
+      }
+     }
+   }
+  }
+}
+
+```
+T.C. O(V+E) 
+
+S.C. - visted array & queue O(V)
+# DFS Recursive
+```java
+public void performDfs(List<List<Integer>> adjList, int V) {
+
+    boolean[] isVisited = new boolean[V + 1];
+
+    // Handle disconnected components
+    for (int i = 1; i <= V; i++) {
+
+        if (!isVisited[i]) {
+
+            dfs(adjList, isVisited, i);
+        }
+    }
+}
+
+private void dfs(List<List<Integer>> adjList,
+                 boolean[] isVisited,
+                 int current) {
+
+    isVisited[current] = true;
+
+    System.out.print(current + " ");
+
+    for (int neighbour : adjList.get(current)) {
+
+        if (!isVisited[neighbour]) {
+
+            dfs(adjList, isVisited, neighbour);
+        }
+    }
+}
+```
 # DFS Iterative
+
+```java
+public void performDfsIterative(List<List<Integer>> adjList, int V) {
+
+    boolean[] isVisited = new boolean[V + 1];
+
+    Stack<Integer> stack = new Stack<>();
+
+    // Handle disconnected components
+    for (int i = 1; i <= V; i++) {
+
+        if (!isVisited[i]) {
+
+            stack.push(i);
+            isVisited[i] = true;
+
+            while (!stack.isEmpty()) {
+
+                int current = stack.pop();
+
+                System.out.print(current + " ");
+
+                for (int neighbour : adjList.get(current)) {
+
+                    if (!isVisited[neighbour]) {
+
+                        stack.push(neighbour);
+                        isVisited[neighbour] = true;
+                    }
+                }
+            }
+        }
+    }
+}
+```
+T.C. O(V+E) 
+
+S.C. - visted array & queue O(V)
