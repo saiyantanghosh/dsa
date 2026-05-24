@@ -7,7 +7,8 @@ Given an arrays of integer find out majority element which appears more than n/2
 * If more than one majority element , then return any of numbers
 * Return -1 if no majority found 
 * Empty or single return -1
-# Brute force
+# Approaches 
+## Approach1 - Brute force
 * build frequency map and get num
 ```java
 import java.util.*;
@@ -27,14 +28,18 @@ class Solution {
 }
 
 ```
-## Comprexity
+### Comprexity
 * T.C. - O(n)
 * S.C. - O(n)
-
-# Optimize - No extra space
+## Approach2 - Sort and get mddile
+* sort array and get middle index element as majority will expect to be present in middle. arr[n/2]
+### Comprexity 
+* T.C. - O(nlogn)
+* S.C. - O(1)
+## Approach3 - using Boyer-Moore voting algorithm
 * get possible majority elements by cancelling each pair.
-* left element can be possible majority candidate 
-* if majority exists then work. Otherwise go for 2nd pass to recheck and get majority element
+* This approach will provide majority candidate if any majority elemnts exists. If no majority elements exists then it will return arbitary element as majorty element. 
+* We need go for 2nd pass to recheck and get recheck on majority element
 
 ## Psedo 
 First pass
